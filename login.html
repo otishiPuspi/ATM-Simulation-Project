@@ -1,0 +1,203 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ATM Machine Simulation</title>
+  <style>
+   *{
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Poppins", Arial, sans-serif;
+}
+
+body{
+  height: 100vh;
+  background: linear-gradient(135deg, #f3c4fb, #d9b8ff);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: #4a235a;
+}
+
+.atm{
+  width: 380px;
+  background: #ffffff;
+  padding: 30px;
+  border-radius: 22px;
+  text-align: center;
+  box-shadow: 0 15px 40px rgba(128, 0, 128, 0.25);
+}
+
+/* Header */
+.header{
+  display: flex;
+  align-items: center;
+  margin-bottom: 30px;
+}
+
+.header h3{
+  flex: 1;
+  text-align: center;
+  color: #8e44ad;
+  letter-spacing: 1px;
+}
+
+.return{
+  position: absolute;
+  right: 30px;
+}
+
+
+.return{
+  background: #f7d6ff;
+  color: #8e44ad;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 20px;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+/* PIN boxes */
+#pin-box{
+  display: flex;
+  justify-content: center;
+  gap: 14px;
+  margin: 20px 0;
+}
+
+#pin-box input{
+  width: 46px;
+  height: 46px;
+  border-radius: 10px;
+  border: 2px solid #e8c9ff;
+  background: #faf5ff;
+  text-align: center;
+  font-size: 22px;
+}
+
+/* Keypad */
+#keypad{
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 14px;
+  margin-top: 25px;
+}
+
+#keypad button{
+  height: 58px;
+  border-radius: 50%;
+  border: none;
+  font-size: 18px;
+  cursor: pointer;
+  background: linear-gradient(135deg, #f8a5c2, #c77dff);
+  color: white;
+  box-shadow: 0 8px 18px rgba(199, 125, 255, 0.4);
+  transition: 0.2s;
+}
+
+#keypad button:hover{
+  transform: scale(1.05);
+}
+
+.clear{
+  background: linear-gradient(135deg, #ff9aa2, #ff6f91) !important;
+}
+
+span{
+  font-size: 20px;
+}
+
+
+
+/* 📱 Mobile view */
+@media (max-width: 480px) {
+
+  body{
+    padding: 10px;
+  }
+
+  .atm{
+    width: 100%;
+    max-width: 340px;
+    padding: 22px;
+    border-radius: 20px;
+  }
+
+  .header h3{
+    font-size: 16px;
+  }
+
+  .return{
+    padding: 6px 12px;
+    font-size: 12px;
+  }
+
+  p{
+    font-size: 14px;
+  }
+
+  /* PIN boxes */
+  #pin-box{
+    gap: 10px;
+  }
+
+  #pin-box input{
+    width: 40px;
+    height: 40px;
+    font-size: 18px;
+  }
+
+  /* Keypad */
+  #keypad{
+    gap: 12px;
+  }
+
+  #keypad button{
+    height: 52px;
+    font-size: 16px;
+  }
+}
+
+
+  </style>
+</head>
+<body>
+
+<div class="atm">
+
+  <div class="header">
+    <h3>ATM login</h3>
+  </div>
+
+  <h4>Please Enter Your Password</h4>
+  <i>Make sure that there is no one behind you to secure yourself<span>🧐</span></i>
+  <div id="pin-box">
+    <input type="password" disabled>
+    <input type="password" disabled>
+    <input type="password" disabled>
+    <input type="password" disabled>
+  </div>
+
+  <div id="keypad">
+    <button onclick="press(1)">1</button>
+    <button onclick="press(2)">2</button>
+    <button onclick="press(3)">3</button>
+
+    <button onclick="press(4)">4</button>
+    <button onclick="press(5)">5</button>
+    <button onclick="press(6)">6</button>
+
+    <button onclick="press(7)">7</button>
+    <button onclick="press(8)">8</button>
+    <button onclick="press(9)">9</button>
+
+    <button class="clear" onclick="clearPin()">⌫</button>
+    <button onclick="press(0)">0</button>
+  </div>
+
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>
