@@ -3,52 +3,52 @@
 <head>
   <title>ATM Machine Simulation</title>
   <style>
-   *{
+   * {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
   font-family: "Poppins", Arial, sans-serif;
 }
 
-body{
-  height: 100vh;
+body {
+  min-height: 100vh;
   background: linear-gradient(135deg, #f3c4fb, #d9b8ff);
   display: flex;
   justify-content: center;
   align-items: center;
   color: #4a235a;
+  padding: 15px;
 }
 
-.atm{
-  width: 380px;
+.atm {
+  width: 100%;
+  max-width: 400px;
   background: #ffffff;
-  padding: 30px;
+  padding: 25px;
   border-radius: 22px;
   text-align: center;
   box-shadow: 0 15px 40px rgba(128, 0, 128, 0.25);
+  transition: all 0.3s ease;
 }
 
 /* Header */
-.header{
+.header {
   display: flex;
   align-items: center;
-  margin-bottom: 30px;
+  margin-bottom: 25px;
 }
 
-.header h3{
+.header h3 {
   flex: 1;
   text-align: center;
   color: #8e44ad;
   letter-spacing: 1px;
+  font-size: 22px;
 }
 
-.return{
+.return {
   position: absolute;
-  right: 30px;
-}
-
-
-.return{
+  right: 20px;
   background: #f7d6ff;
   color: #8e44ad;
   border: none;
@@ -59,33 +59,34 @@ body{
 }
 
 /* PIN boxes */
-#pin-box{
+#pin-box {
   display: flex;
   justify-content: center;
-  gap: 14px;
+  gap: 12px;
   margin: 20px 0;
 }
 
-#pin-box input{
-  width: 46px;
-  height: 46px;
-  border-radius: 10px;
+#pin-box input {
+  width: 50px;
+  height: 50px;
+  border-radius: 12px;
   border: 2px solid #e8c9ff;
   background: #faf5ff;
   text-align: center;
   font-size: 22px;
+  transition: all 0.2s;
 }
 
 /* Keypad */
-#keypad{
+#keypad {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 14px;
   margin-top: 25px;
 }
 
-#keypad button{
-  height: 58px;
+#keypad button {
+  height: 60px;
   border-radius: 50%;
   border: none;
   font-size: 18px;
@@ -93,72 +94,69 @@ body{
   background: linear-gradient(135deg, #f8a5c2, #c77dff);
   color: white;
   box-shadow: 0 8px 18px rgba(199, 125, 255, 0.4);
-  transition: 0.2s;
+  transition: transform 0.2s, box-shadow 0.2s;
 }
 
-#keypad button:hover{
+#keypad button:hover {
   transform: scale(1.05);
+  box-shadow: 0 10px 20px rgba(199, 125, 255, 0.6);
 }
 
-.clear{
+.clear {
   background: linear-gradient(135deg, #ff9aa2, #ff6f91) !important;
 }
 
-span{
+span {
   font-size: 20px;
 }
 
-
-
-/* 📱 Mobile view */
-@media (max-width: 480px) {
-
-  body{
-    padding: 10px;
+/* Mobile & Tablet Responsiveness */
+@media (max-width: 600px) {
+  .atm {
+    max-width: 320px;
+    padding: 20px;
   }
 
-  .atm{
-    width: 100%;
-    max-width: 340px;
-    padding: 22px;
-    border-radius: 20px;
+  .header h3 {
+    font-size: 20px;
   }
 
-  .header h3{
-    font-size: 16px;
-  }
-
-  .return{
-    padding: 6px 12px;
-    font-size: 12px;
-  }
-
-  p{
-    font-size: 14px;
-  }
-
-  /* PIN boxes */
-  #pin-box{
-    gap: 10px;
-  }
-
-  #pin-box input{
+  #pin-box input {
     width: 40px;
     height: 40px;
-    font-size: 18px;
+    font-size: 20px;
   }
 
-  /* Keypad */
-  #keypad{
-    gap: 12px;
-  }
-
-  #keypad button{
-    height: 52px;
+  #keypad button {
+    height: 50px;
     font-size: 16px;
   }
 }
 
+@media (max-width: 400px) {
+  .atm {
+    padding: 18px;
+  }
+
+  .header h3 {
+    font-size: 18px;
+  }
+
+  #pin-box {
+    gap: 10px;
+  }
+
+  #pin-box input {
+    width: 35px;
+    height: 35px;
+    font-size: 18px;
+  }
+
+  #keypad button {
+    height: 45px;
+    font-size: 15px;
+  }
+}
 
   </style>
 </head>
