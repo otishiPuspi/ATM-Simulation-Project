@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>ATM Dashboard</title>
+  <style>
+    body {
+      font-family: Arial;
+    }
+
+    .grid {
+      display: grid;
+      grid-template-areas:
+        "balance withdraw deposit"
+        "logout  withdraw deposit"
+        "pin     withdraw deposit";
+      grid-template-columns: 200px 250px 250px;
+      gap: 20px;
+      margin-top: 30px;
+    }
+
+    .box {
+      border: 2px solid #000;
+      padding: 15px;
+      text-align: center;
+    }
+
+    .balance { grid-area: balance; }
+    .logout  { grid-area: logout; }
+    .pin     { grid-area: pin; }
+    .withdraw{ grid-area: withdraw; }
+    .deposit { grid-area: deposit; }
+
+    <style>
+  *{
+    box-sizing: border-box;
+    font-family: "Poppins", Arial, sans-serif;
+  }
+
+  body {
+    min-height: 100vh;
+    background: linear-gradient(135deg, #fbc2eb, #a6c1ee);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 30px;
+    color: #5a2a6e;
+  }
+
+  h2{
+    margin-bottom: 20px;
+    letter-spacing: 1px;
+    color: #7d3c98;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-areas:
+      "balance withdraw deposit"
+      "logout  withdraw deposit"
+      "pin     withdraw deposit";
+    grid-template-columns: 220px 260px 260px;
+    gap: 22px;
+  }
+
+  .box {
+    background: #fff;
+    border-radius: 20px;
+    padding: 20px;
+    text-align: center;
+    box-shadow: 0 12px 30px rgba(155, 89, 182, 0.25);
+    transition: 0.3s;
+  }
+
+  .box:hover{
+    transform: translateY(-5px);
+  }
+
+  .balance { grid-area: balance; }
+  .logout  { grid-area: logout; }
+  .pin     { grid-area: pin; }
+  .withdraw{ grid-area: withdraw; }
+  .deposit { grid-area: deposit; }
+
+  b{
+    color: #8e44ad;
+    font-size: 16px;
+  }
+
+  span#balance{
+    font-size: 22px;
+    font-weight: bold;
+    color: #d63384;
+  }
+
+  input{
+    width: 90%;
+    padding: 10px;
+    border-radius: 12px;
+    border: 2px solid #f3c4fb;
+    outline: none;
+    margin-top: 8px;
+    font-size: 14px;
+  }
+
+  input:focus{
+    border-color: #c77dff;
+  }
+
+  button{
+    margin-top: 12px;
+    padding: 10px 18px;
+    border-radius: 20px;
+    border: none;
+    cursor: pointer;
+    font-weight: 600;
+    background: linear-gradient(135deg, #f8a5c2, #c77dff);
+    color: white;
+    box-shadow: 0 8px 18px rgba(199, 125, 255, 0.4);
+    transition: 0.3s;
+  }
+
+  button:hover{
+    transform: scale(1.05);
+  }
+
+  .logout button{
+    background: linear-gradient(135deg, #ff9aa2, #ff6f91);
+  }
+
+ #msg{
+  margin-top: 20px;
+  font-weight: 600;
+  color: #6c3483;  /* pinkish girly color */
+  transition: opacity 0.5s ease;
+  opacity: 0;       /* start hidden */
+  text-align: center;
+}
+
+
+  /* 📱 Mobile friendly */
+  @media (max-width: 900px){
+    .grid{
+      grid-template-areas:
+        "balance"
+        "withdraw"
+        "deposit"
+        "pin"
+        "logout";
+      grid-template-columns: 1fr;
+    }
+  }
+</style>
+
+  </style>
+</head>
+<body>
+
+<h2>Welcome User</h2>
+
+<div class="grid">
+
+  <div class="box balance">
+    <b>Current Balance</b><br><br>
+    ৳ <span id="balance"></span>
+  </div>
+
+  <div class="box logout">
+    <button onclick="logout()">Logout</button>
+  </div>
+
+  <div class="box pin">
+    <b>Change PIN</b><br><br>
+    <input type="password" id="newPin" placeholder="Enter new password"><br><br>
+    <button onclick="changePin()">Change</button>
+  </div>
+
+  <div class="box withdraw">
+    <b>Withdraw</b><br><br>
+    <input type="number" id="withdrawAmount"><br><br>
+    <button onclick="withdraw()">Withdraw</button>
+  </div>
+
+  <div class="box deposit">
+    <b>Deposit</b><br><br>
+    <input type="number" id="depositAmount"><br><br>
+    <button onclick="deposit()">Deposit</button>
+  </div>
+
+</div>
+
+<p id="msg"></p>
+
+<script>
+  function loadBalance() {
+    document.getElementById("balance").innerText =
+      localStorage.getItem("balance");
+  }
+  loadBalance();
+
+  function deposit() {
+    let amount = Number(depositAmount.value);
+    let balance = Number(localStorage.getItem("balance"));
+
+    if (amount <= 0) return msg("Negative deposit not allowed");
+
+    localStorage.setItem("balance", balance + amount);
+    loadBalance();
+    msg("Deposit successful");
+  }
+
+  function withdraw() {
+    let amount = Number(withdrawAmount.value);
+    let balance = Number(localStorage.getItem("balance"));
+
+    if (amount <= 0) return msg("Invalid withdraw amount");
+    if (amount > balance) return msg("Insufficient balance");
+
+    localStorage.setItem("balance", balance - amount);
+    loadBalance();
+    msg("Withdraw successful");
+  }
+
+function changePin() {
+  if (newPin.value.length < 4)
+    return msg("PIN must be at least 4 digits");
+
+  localStorage.setItem("pin", newPin.value);
+  msg("🎉 PIN changed successfully!");
+  newPin.value = "";  // clear input after change
+}
+
+
+  function logout() {
+    window.location.href = "login.html";
+  }
+
+ function msg(text) {
+  let msgBox = document.getElementById("msg");
+  msgBox.innerText = text;
+  msgBox.style.opacity = 1; // show message
+
+  setTimeout(() => {
+    msgBox.style.opacity = 0; // fade out after 3 sec
+  }, 3000);
+}
+
+</script>
+
+</body>
+</html>
