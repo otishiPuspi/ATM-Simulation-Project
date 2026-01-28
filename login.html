@@ -110,6 +110,30 @@ span {
   font-size: 20px;
 }
 
+.forgot {
+  margin-top: 15px;
+  color: #8e44ad;
+  cursor: pointer;
+  font-weight: 600;
+}
+
+#forgotBox input {
+  width: 80%;
+  padding: 10px;
+  border-radius: 12px;
+  border: 1px solid #ccc;
+}
+
+#forgotBox button {
+  padding: 10px 25px;
+  border: none;
+  border-radius: 20px;
+  background: linear-gradient(135deg, #c77dff, #9b5de5);
+  color: white;
+  cursor: pointer;
+}
+
+
 /* Mobile & Tablet Responsiveness */
 @media (max-width: 600px) {
   .atm {
@@ -194,7 +218,18 @@ span {
     <button onclick="press(0)">0</button>
   </div>
 
+<p class="forgot" onclick="openForgot()">Forgot Password?</p><br>
+
+<div id="forgotBox" style="display:none;">
+  <h4>Set New Password</h4>
+  <input type="password" id="newPin" placeholder="Enter New 4 Digit PIN"><br><br>
+  <button onclick="changePin()">Confirm</button>
 </div>
+
+
+</div>
+
+
 
 <script src="script.js"></script>
 </body>
