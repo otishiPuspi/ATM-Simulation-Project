@@ -192,6 +192,12 @@
 <p id="msg"></p>
 
 <script>
+
+  // if pin not set, user must login first
+if (!localStorage.getItem("pin")) {
+  window.location.href = "login.html";
+}
+
   function loadBalance() {
     if(!localStorage.getItem("balance")) localStorage.setItem("balance", 0);
     document.getElementById("balance").innerText =
